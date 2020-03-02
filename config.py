@@ -1,13 +1,12 @@
 import os
 from builtins import object
-from pathlib import Path
 from dotenv import load_dotenv
-env_path = Path(str(os.path.abspath(os.path.dirname(__file__))) + r'\.env')
-load_dotenv(dotenv_path=env_path)
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+load_dotenv()
+
 
 class Ads:
     '''

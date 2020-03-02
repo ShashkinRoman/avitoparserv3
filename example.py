@@ -1,27 +1,16 @@
+from stem import Signal
+from stem.control import Controller
+import threading
+from selenium import webdriver
+# Смена IP тора (9151 и 9150 - это для браузера тор, для сервера будет 9050 9051 соотвественно)
+controller = Controller.from_port(port=9151)
+controller.authenticate()
+# Получение нового адреса
 
-def test_func(a: list = None, b: int = 0) -> (list, int):
-    """
-    jhjhjk
-    :param a:
-    :param b:
-    :return:
-    """
-    if type(a) is not list:
-        a = []
-    return a, b
+controller.signal(Signal.NEWNYM)
 
-# TODO: sdfasdfasdf
-#  sfgdsfgdsf
-#  erwerwerqwer
-# sdfsdfs
+controller.close()  # отключение от тора
 
-a = {1,2}
-b = {2,3}
-a ^ b
-Out[4]: {1, 3}
-a = [1,2,2,2,3]
-set(a)
-Out[6]: {1, 2, 3}
-b = [2,2,3,3,2,2]
-set(a) ^ set(b)
-Out[8]: {1}
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+options.add_argument('--proxy-server=socks5://127.0.0.1:9150')
