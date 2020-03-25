@@ -1,4 +1,3 @@
-dotenv
 backcall==0.1.0
 beautifulsoup4==4.8.2
 certifi==2019.11.28
